@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07130f">
+<title>业余无线电学习助手 · 下载</title>
+<meta name="description" content="A / B / C 类操作证书题库刷题 + 摩尔斯电码训练，完全离线。Android 6.0 及以上，安装包 640 KB。">
+<link rel="icon" href="icon-192.png">
+<style>
+  :root{
+    --bg:#07130f;
+    --panel:#0e2019;
+    --line:rgba(90,200,160,.22);
+    --fg:#e8f5ef;
+    --dim:#8aa79c;
+    --acc:#3ddc97;
+    --acc2:#22a06b;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(1100px 600px at 50% -12%, #10382a 0%, rgba(16,56,42,0) 62%),
+      radial-gradient(700px 420px at 88% 104%, #0b2a20 0%, rgba(11,42,32,0) 70%),
+      var(--bg);
+    color:var(--fg);
+    font:16px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+    min-height:100vh;
+    padding:0 20px 64px;
+  }
+  .wrap{max-width:720px;margin:0 auto}
+
+  /* 首屏 */
+  header{padding:64px 0 8px;text-align:center}
+  .icon{
+    width:112px;height:112px;border-radius:26px;display:block;margin:0 auto 22px;
+    box-shadow:0 18px 46px rgba(0,0,0,.55), 0 0 0 1px rgba(90,200,160,.14);
+  }
+  h1{font-size:31px;line-height:1.28;margin:0 0 12px;letter-spacing:.5px;font-weight:700}
+  .lead{color:var(--dim);font-size:15.5px;margin:0 auto 30px;max-width:30em}
+  .lead b{color:#b9e6d3;font-weight:600}
+
+  /* 下载按钮 */
+  .cta{
+    display:block;max-width:360px;margin:0 auto;
+    padding:17px 24px;border-radius:16px;text-align:center;text-decoration:none;
+    background:linear-gradient(180deg,#43e8a2,#22a06b);
+    color:#04150e;font-weight:700;font-size:18px;letter-spacing:.3px;
+    box-shadow:0 12px 30px rgba(45,190,135,.30), inset 0 1px 0 rgba(255,255,255,.35);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .cta:active{transform:scale(.976);box-shadow:0 6px 18px rgba(45,190,135,.24)}
+  .cta small{display:block;font-size:12.5px;font-weight:500;color:#0a3527;opacity:.8;margin-top:3px;letter-spacing:0}
+  .meta{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;
+    margin:18px 0 0;color:var(--dim);font-size:13px;
+  }
+  .meta span{white-space:nowrap}
+
+  /* 二维码 */
+  .qr{text-align:center;margin:38px 0 0}
+  .qr img{
+    width:168px;height:168px;background:#fff;border-radius:14px;padding:10px;
+    box-shadow:0 10px 26px rgba(0,0,0,.4);
+  }
+  .qr p{color:var(--dim);font-size:13px;margin:12px 0 0}
+
+  /* 分区 */
+  section{margin:52px 0 0}
+  h2{
+    font-size:13px;letter-spacing:2.2px;color:var(--acc);font-weight:700;
+    text-transform:uppercase;margin:0 0 16px;
+    display:flex;align-items:center;gap:12px;
+  }
+  h2::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:20px 20px 18px;
+  }
+  .card + .card{margin-top:12px}
+
+  ol.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+  ol.steps li{
+    counter-increment:s;position:relative;padding-left:34px;margin:0 0 14px;
+    font-size:15px;color:#cfe5db;
+  }
+  ol.steps li:last-child{margin-bottom:0}
+  ol.steps li::before{
+    content:counter(s);position:absolute;left:0;top:1px;
+    width:23px;height:23px;border-radius:50%;background:rgba(61,220,151,.14);
+    border:1px solid rgba(61,220,151,.4);color:var(--acc);
+    font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;
+    line-height:1;
+  }
+
+  ul.feat{margin:0;padding:0;list-style:none}
+  ul.feat li{position:relative;padding-left:22px;margin:0 0 9px;font-size:15px;color:#cfe5db}
+  ul.feat li:last-child{margin-bottom:0}
+  ul.feat li::before{
+    content:"";position:absolute;left:4px;top:11px;width:6px;height:6px;border-radius:50%;
+    background:var(--acc);box-shadow:0 0 8px rgba(61,220,151,.7);
+  }
+  .shot{margin:0;text-align:center}
+  .shot img{width:100%;max-width:640px;border-radius:16px;border:1px solid var(--line);display:block;margin:0 auto}
+
+  .note{border-left:3px solid rgba(61,220,151,.45);padding:2px 0 2px 14px;color:var(--dim);font-size:14px;margin:16px 0 0}
+  .note.warn{border-left-color:rgba(255,190,90,.5)}
+
+  footer{
+    margin:56px 0 0;padding-top:26px;border-top:1px solid var(--line);
+    text-align:center;color:#5d7a70;font-size:12.5px;line-height:1.9;
+  }
+  footer p{margin:0}
+  footer .ver{margin-top:14px;color:#416056;letter-spacing:.6px}
+  footer a{color:#7fb9a4;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img class="icon" src="icon-512.png" alt="应用图标" width="112" height="112">
+    <h1>业余无线电学习助手</h1>
+    <p class="lead">A / B / C 类操作证书题库，加一套摩尔斯电码训练。<br><b>1375 道题 · 53 张官方附图 · 40 课 Koch</b><br>全部离线，打开就能用。</p>
+
+    <a class="cta" href="ham-radio-cn-v1.1.1.apk" download>
+      下载 APK
+      <small>v1.1.1 · 640 KB · Android 6.0 及以上</small>
+    </a>
+
+    <div class="meta">
+      <span>正式签名 · 可覆盖升级</span>
+      <span>无广告 · 运行时不需联网</span>
+    </div>
+  </header>
+
+  <div class="qr">
+    <img src="qr.png" alt="扫码下载" onerror="this.parentNode.style.display='none'">
+    <p>手机扫码直接下载</p>
+  </div>
+
+  <section>
+    <h2>安装</h2>
+    <div class="card">
+      <ol class="steps">
+        <li>点上面的「下载 APK」，把文件存到手机。</li>
+        <li>打开「文件管理」，找到刚下载的 APK，点击安装。</li>
+        <li>系统会问是否允许安装未知应用，给浏览器或文件管理器打开这个权限。</li>
+        <li>如果提示「已阻止安装」，点提示框里的「设置」，打开「允许安装未知应用」，再返回继续。</li>
+      </ol>
+      <p class="note warn">浏览器提示「此类文件可能有害」是 Android 对所有非应用商店 APK 的统一提示，选「仍要下载」即可。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>题库</h2>
+    <div class="card">
+      <ul class="feat">
+        <li>A / B / C 三类分开放，对应不同的操作证书等级</li>
+        <li>顺序刷题、随机练习、只练错题，三种方式随时切换</li>
+        <li>题干、选项、进度、正确率都在一屏</li>
+        <li>选错时正确项标蓝，判定写出正解并附官方原文</li>
+        <li>每道题配一句速记，讲清为什么选它</li>
+        <li>输入 LK 编号直接跳题，官方附图随题放大显示</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>摩尔斯电码</h2>
+    <div class="card">
+      <ul class="feat">
+        <li>Koch 顺序 40 课，从 K、M 起步</li>
+        <li>每个字符单独收听，点划间隔按标准速度</li>
+        <li>听辨训练：答错会告诉你刚才是什么并自动重播，答对记连对</li>
+        <li>抄收练习：整组一次播完，边听边敲，满 5 个逐位复核，对蓝错红</li>
+        <li>发报速度、音调、间隔可调，进度按课保存</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>界面</h2>
+    <figure class="shot">
+      <img src="preview.png" alt="界面预览：首页、题库、选错判定、学习、听辨、练习统计" loading="lazy" style="width:100%;max-width:100%;height:auto;display:block;margin:0 auto;border-radius:16px;border:1px solid rgba(90,200,160,.22)">
+    </figure>
+  </section>
+
+  <footer>
+    <p>题库内容整理自公开的业余无线电操作证书考试题库，仅供个人学习使用。<br>
+    应用不收集个人信息，不上传使用数据，不含广告。</p>
+    <p class="ver">业余无线电学习助手 · v1.1.1</p>
+  </footer>
+
+</div>
+</body>
+</html>
